@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Library {
+public class LibraryProgram {
     public static void main(String[] args) {
         ArrayList<Main> books = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -18,7 +18,13 @@ public class Library {
             scanner.nextLine();
 
             switch (choice) {
+                case 4:
+                    running = false;
+                    System.out.println("프로그램 종료!");
+                    break;
 
+                default:
+                    System.out.println("잘못된 선택입니다.");
             }
         }
 
