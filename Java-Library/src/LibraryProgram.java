@@ -74,36 +74,55 @@ public class LibraryProgram {
         System.out.println("1. 제목");
         System.out.println("2. 저자");
         System.out.println("3. 카테고리");
+        System.out.println("4. 도서 목록");
         System.out.print("선택: ");
         int searchChoice = scanner.nextInt();
-        scanner.nextLine(); // 개행 제거
+        scanner.nextLine();
 
+        // 4번: 전체 도서 목록 출력
+        if (searchChoice == 4) {
+            System.out.println("[ 전체 도서 목록 ]");
+            for (Main b : books) {
+                System.out.println("제목: " + b.title + ", 저자: " + b.author + ", 카테고리: " + b.category);
+            }
+            return;
+        }
+
+        // 1~3번
         System.out.print("검색어 입력: ");
         String keyword = scanner.nextLine().trim();
 
         ArrayList<Main> searchResults = new ArrayList<>();
 
-        for (Main book : books) {
-            switch (searchChoice) {
-                case 1:
+        switch (searchChoice) {
+            case 1: // 제목 검색
+                for (Main book : books) {
                     if (book.title.contains(keyword)) searchResults.add(book);
-                    break;
-                case 2:
+                }
+                break;
+
+            case 2: // 저자 검색
+                for (Main book : books) {
                     if (book.author.contains(keyword)) searchResults.add(book);
-                    break;
-                case 3:
+                }
+                break;
+
+            case 3: // 카테고리 검색
+                for (Main book : books) {
                     if (book.category.contains(keyword)) searchResults.add(book);
-                    break;
-                default:
-                    System.out.println("잘못된 선택입니다.");
-                    return;
-            }
+                }
+                break;
+
+            default:
+                System.out.println("잘못된 선택입니다.");
+                return;
         }
 
+        // 결과 출력
         if (searchResults.isEmpty()) {
             System.out.println("검색 결과가 없습니다.");
         } else {
-            System.out.println("검색 결과: ");
+            System.out.println("[ 검색 결과 ]");
             for (Main b : searchResults) {
                 System.out.println("제목: " + b.title + ", 저자: " + b.author + ", 카테고리: " + b.category);
             }
